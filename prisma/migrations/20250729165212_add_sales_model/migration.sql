@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "Sale" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "amount" REAL NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model BlogPost {
+  id        String   @id @default(uuid())
+  title     String
+  summary   String
+  content   String
+  tags      String
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  rating    Float
+  images    Json
+  createdAt DateTime @default(now())
+}
+
+model Sale {
+  id        String   @id @default(uuid())
+  amount    Float
+  createdAt DateTime @default(now())
+}
+
+model TempAssignment {
+  id         Int      @id @default(autoincrement())
+  sessionId  String
+  data       Json
+  createdAt  DateTime @default(now())
+}

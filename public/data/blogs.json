@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "slug": "welcome-to-my-new-website",
+    "title": "Welcome to My New Website – A Fresh Start",
+    "date": "2025-07-25",
+    "summary": "After weeks of planning, building, and tweaking, I'm excited to finally share what I’ve been working on — welcome to my new site!",
+    "tags": ["intro", "website", "nextjs"]
+  },
+  {
+    "id": "2",
+    "slug": "dev-logs-1-testing-stacking-and-rendering",
+    "title": "Dev Logs #1 – Testing, Stacking, and Rendering",
+    "date": "2025-07-26",
+    "summary": "A developer log-style blog post to test dynamic routing, content stacking, and markdown rendering.",
+    "tags": ["devlog", "testing", "ui"]
+  }
+]

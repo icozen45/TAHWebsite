@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+// Dynamic API route: /api/blogs/[id]
+
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
+  const id = context.params.id
   try {
     const blog = await prisma.blogPost.findUnique({ where: { id } })
     if (!blog) {
@@ -18,11 +17,8 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+  const id = context.params.id
   const body = await req.json()
   try {
     const updated = await prisma.blogPost.update({
@@ -41,11 +37,8 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+  const id = context.params.id
   try {
     await prisma.blogPost.delete({ where: { id } })
     return NextResponse.json({ message: 'Blog deleted' })

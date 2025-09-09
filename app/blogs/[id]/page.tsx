@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
 interface BlogPageProps {
-  params: { id: string };
+  params: any;
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {

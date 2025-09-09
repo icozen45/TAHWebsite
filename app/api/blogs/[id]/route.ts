@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-// Dynamic API route: /api/blogs/[id]
-
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: any) {
   const id = context.params.id
   try {
     const blog = await prisma.blogPost.findUnique({ where: { id } })
@@ -17,7 +15,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
   }
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: any) {
   const id = context.params.id
   const body = await req.json()
   try {
@@ -37,7 +35,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
   }
 }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: any) {
   const id = context.params.id
   try {
     await prisma.blogPost.delete({ where: { id } })

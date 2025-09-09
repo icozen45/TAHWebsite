@@ -4,11 +4,8 @@ import fs from 'fs'
 import path from 'path'
 
 // GET /api/reviews/[id]
-export async function GET(
-    req: NextRequest,
-    context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function GET(req: NextRequest, { params }: any) {
+  const { id } = params
 
   try {
     const review = await prisma.review.findUnique({
@@ -33,11 +30,8 @@ export async function GET(
 }
 
 // PUT /api/reviews/[id]
-export async function PUT(
-    req: NextRequest,
-    context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function PUT(req: NextRequest, { params }: any) {
+  const { id } = params
 
   try {
     const body = await req.json()
@@ -45,10 +39,7 @@ export async function PUT(
 
     const updated = await prisma.review.update({
       where: { id },
-      data: {
-        content,
-        rating,
-      },
+      data: { content, rating },
     })
 
     return NextResponse.json({ success: true, review: updated })
@@ -62,14 +53,10 @@ export async function PUT(
 }
 
 // DELETE /api/reviews/[id]
-export async function DELETE(
-  req: NextRequest,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params
+export async function DELETE(req: NextRequest, { params }: any) {
+  const { id } = params
 
   try {
-    // 1. Fetch the review
     const review = await prisma.review.findUnique({ where: { id } })
 
     if (!review) {
@@ -79,7 +66,6 @@ export async function DELETE(
       )
     }
 
-    // 2. Delete associated images if any
     const images = review.images as string[] | null
 
     if (images && images.length > 0) {
@@ -97,7 +83,6 @@ export async function DELETE(
       })
     }
 
-    // 3. Delete the review itself
     await prisma.review.delete({ where: { id } })
 
     return NextResponse.json({ success: true })

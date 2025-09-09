@@ -17,6 +17,12 @@ model BlogPost {
   createdAt DateTime @default(now())
 }
 
+model Subscriber {
+  id      String   @id @default(cuid())
+  email   String   @unique
+  createdAt DateTime @default(now())
+}
+
 model Review {
   id        String   @id @default(uuid())
   title     String
